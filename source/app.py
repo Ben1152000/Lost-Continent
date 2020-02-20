@@ -11,7 +11,7 @@ def main():
     FPS = 45
     WINDOWWIDTH = 680
     WINDOWHEIGHT = 480
-    if True:
+    if False:
         WINDOWWIDTH = pygame.display.Info().current_w # Set the screen width and height to cover screen
         WINDOWHEIGHT = pygame.display.Info().current_h - 92 # 92 for bottom bar
 

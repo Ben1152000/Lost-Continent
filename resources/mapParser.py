@@ -4,11 +4,15 @@ provinces = {}
 vertices = []
 polygonPattern = r'<polygon id="([^"]*)" class="[^"]*" points="((?:\d+\.?\d*,\d+\.?\d*\s+)+)"\/>'
 nameIdPattern = r'_x3((?:\d_)\d*)_x5F_([\w-]+)'
-with open("A Game Map.svg") as svgFile:
+with open("map.svg") as svgFile:
     #print(help(re.findall))
     polygons = re.findall(polygonPattern, svgFile.read())
     for polygon in polygons:
-        nameId = re.findall(nameIdPattern, polygon[0])[0]
+        print(re.findall(nameIdPattern, polygon[0]), polygon[0])
+        try:
+            nameId = re.findall(nameIdPattern, polygon[0])[0]
+        except IndexError:
+            continue
         pid = int(nameId[0].replace("_", ""))
         name = nameId[1]
         vertexList = []
