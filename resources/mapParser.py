@@ -8,7 +8,6 @@ with open("map.svg") as svgFile:
     #print(help(re.findall))
     polygons = re.findall(polygonPattern, svgFile.read())
     for polygon in polygons:
-        print(re.findall(nameIdPattern, polygon[0]), polygon[0])
         try:
             nameId = re.findall(nameIdPattern, polygon[0])[0]
         except IndexError:
@@ -36,6 +35,7 @@ with open("map.svg") as svgFile:
                 vertexList.append(len(vertices))
                 vertices.append({"lon": lon, "lat": lat})
         provinces[pid] = {"name": name, "id": pid, "vertices": vertexList}
+        print("Added province " + str(pid) + ": " + name)
     vertices = { v : vertices[v] for v in range(len(vertices)) }
 
 outdict = {"vertices": vertices, "provinces": provinces}

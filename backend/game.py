@@ -1,4 +1,4 @@
-import datetime, time
+import datetime, time, json
 
 class Game():
 
@@ -7,7 +7,19 @@ class Game():
     provinces = {}
     factions = {}
 
-    def __init__(self, provinces, factions):
+    def load(self, dataFile):
+        with open(dataFile) as data:
+            dataDict = json.loads(data.read())
+            for provinceId in dataDict["provinces"]:
+                if int(provinceId) not in self.provinces:
+                    self.provinces[int(provinceId)] = Province(int(provinceId))
+                self.provinces[int(provinceId)].update(dataDict["provinces"][provinceId])
+            for factionId in dataDict["factions"]:
+                if factionId not in self.factions:
+                    self.factions[factionId] = Faction(factionId)
+                self.factions[factionId].update(dataDict["factions"][factionId])
+
+    def __init__(self, provinces={}, factions={}):
         self.provinces = provinces
         self.factions = factions
 
@@ -23,20 +35,42 @@ class Game():
         for faction in self.factions:
             self.factions[faction].week()
 
+    def execute(self, command):
+        # Command structure is <operation> <param1> <param2>...
+        params = command.split()
+        if params[0] == "tick":
+            self.tick()
+            return True
+        if params[0] == "explore":
+            factionId = params[1]
+            provinceId = int(params[2])
+            if factionId not in self.factions:
+                return False
+            if provinceId not in self.provinces:
+                return False
+            self.factions[factionId].assignExplorer(provinceId)
+            return True
+
+
 class Province():
 
-    provinceId = 0
+    name = ""
+    id = 0
+    neighbors = []
 
-    def __init__(self, pid):
+    def __init__(self, provinceId):
         self.provinceId = provinceId
 
+    def update(self, dataDict):
+        for key in dataDict:
+            setattr(self, key, dataDict[key])
 
 class Faction():
 
-    explorerLimit = 1 # number of available explorers
+    id = "XXX"
+
+    explorerLimit = 2 # number of available explorers
     explorerDuration = 120
-    explorers = [] # current explorers
-    explored = {} # list of explored provinces
 
     actions = 0 # action points, tick up at the end of week
 
@@ -46,12 +80,22 @@ class Faction():
 
     mercantilism = 0
 
-    def tick(self):
+    def __init__(self, factionId):
+        self.id = factionId
+        self.explorers = [] # current explorers
+        self.explored = {} # list of explored provinces
 
+    def update(self, dataDict):
+        for key in dataDict:
+            setattr(self, key, dataDict[key])
+
+    def tick(self):
         # update explorers
-        for e in range(len(self.explorers)):
+        e = 0
+        while e < len(self.explorers):
             if self.explorers[e]["remainingTime"] > 0:
                 self.explorers[e]["remainingTime"] -= 1
+                e += 1
             else:
                 self.explored[self.explorers[e]["provinceId"]] = True
                 del self.explorers[e]
@@ -63,19 +107,24 @@ class Faction():
         if len(self.explorers) < self.explorerLimit and provinceId not in self.explored:
             self.explorers.append({
                 "provinceId": provinceId,
-                "remainingTime": self.explorerDuration
+                "remainingTime": self.explorerDuration 
             })
+            self.explored[provinceId] = False
     
         
 if __name__ == "__main__":
 
-    provinces = {0: Province(0), 1: Province(1), 2: Province(2)}
-    faction = Faction()
-    game = Game(provinces, {0: faction})
+    game = Game()
+    game.load("data.json")
+
+    game.execute("explore FRA 2")
+    game.execute("explore FRA 3")
+    game.execute("explore FRA 4")
+
     while True:
         game.tick()
         print(game.date)
-        game.factions[0].assignExplorer(0)
-        game.factions[0].assignExplorer(1)
-        print(game.factions[0].explorers, game.factions[0].explored)
-        time.sleep(0.2)
+        print(game.factions["FRA"].explorers)
+        print(game.factions["FRA"].explored)
+        time.sleep(0.1)
+    

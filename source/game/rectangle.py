@@ -3,32 +3,39 @@ from .vertex import Vertex
 class Rectangle():
     
     def __init__(self, x1, x2, y1, y2):
-        self.lower = Vertex(x1, y1)
-        self.upper = Vertex(x2, y2)
+        self.v1 = Vertex(x1, y1)
+        self.v2 = Vertex(x2, y2)
 
-    def getMinX(self): return self.lower.x
-    def getMinY(self): return self.lower.y
-    def getMaxX(self): return self.upper.x
-    def getMaxY(self): return self.upper.x
-    def getWidth(self): return self.upper.x - self.lower.x
-    def getHeight(self): return self.upper.y - self.lower.y
+    def getMinX(self): return min(self.v1.x, self.v2.x)
+    def getMinY(self): return min(self.v1.y, self.v2.y)
+    def getMaxX(self): return max(self.v1.x, self.v2.x)
+    def getMaxY(self): return max(self.v1.y, self.v2.y)
+    def getWidth(self): return self.v2.x - self.v1.x
+    def getHeight(self): return self.v2.y - self.v1.y
 
     def translate(self, dx, dy):
-        self.lower.x += dx
-        self.lower.y += dy
-        self.upper.x += dx
-        self.upper.y += dy
+        self.v1.x += dx
+        self.v1.y += dy
+        self.v2.x += dx
+        self.v2.y += dy
     
     def scale(self, sx, sy):
         width, height = self.getWidth(), self.getHeight()
-        self.lower.x -= width * sx
-        self.upper.x += width * sx
-        self.lower.y -= height * sy
-        self.upper.y += height * sy
+        self.v1.x -= width * sx
+        self.v1.y -= height * sy
+        self.v2.x += width * sx
+        self.v2.y += height * sy
+
+    def __contains__(self, vertex):
+        return vertex.x >= self.getMinX() and vertex.x <= self.getMaxX() \
+            and vertex.y >= self.getMinY() and vertex.y <= self.getMaxY()
 
     def overlap(self, other):
-        return self.lower.x < other.upper.x and other.lower.x < self.upper.x \
-            and self.lower.y < other.upper.y and other.lower.y < self.upper.y
+        return self.getMinX() < other.getMaxX() and other.getMinX() < self.getMaxX() \
+            and self.getMinY() < other.getMaxY() and other.getMinY() < self.getMaxY()
+
+    def __repr__(self):
+        return "(" + str(self.v1.x) + ":" + str(self.v1.x) + ", " + str(self.v2.y) + ":" + str(self.v2.y) + ")"
 
     @staticmethod
     def fromVertices(vertices):

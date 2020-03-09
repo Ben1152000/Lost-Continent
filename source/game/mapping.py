@@ -16,12 +16,16 @@ class Map():
             provinceDict["vertices"] = [mapDict["vertices"][str(v)] for v in provinceDict["vertices"]]
             self.provinces.append(Province(provinceDict))
 
-    def render(self, screen, bounds):
+    def render(self, screen, bounds, time):
         for province in self.provinces:
-            province.render(screen, bounds)
+            province.render(screen, bounds, time)
 
-    def click(self, bounds):
-        pass
+    def click(self, screen, coords, viewport):
+        width, height = screen.get_size()
+        coords = Vertex(coords[0] / width * viewport.getWidth() + viewport.v1.x, 
+                coords[1] / height * viewport.getHeight() + viewport.v1.y)
+        for province in self.provinces:
+            province.click(coords)
 
 if __name__ == "__main__":
     pass

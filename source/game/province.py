@@ -2,6 +2,7 @@ from .vertex import Vertex
 from .rectangle import Rectangle
 import pygame
 import pygame.gfxdraw
+import math
 
 from random import randint
 
@@ -11,6 +12,9 @@ class Province():
     pid = 0
     vertices = []
     bounds = []
+
+    selected = False
+    explored = False
 
     def __init__(self, provinceDict):
         self.name = str(provinceDict["name"])
@@ -22,32 +26,32 @@ class Province():
     def __str__(self):
         return str(self.pid) + ": " + self.name
 
-    def render(self, screen, bounds):
-        width, height = screen.get_size()
-        vertexScreenCoords = []
-        for vertex in self.vertices:
-            screenX = int((vertex.x - bounds.getMinX()) * width / bounds.getWidth())
-            screenY = int((vertex.y - bounds.getMinY()) * height / bounds.getHeight())
-            vertexScreenCoords.append((screenX, screenY))
-        color = ((self.pid * 347) % 255, ((1 + self.pid) * 347) % 255, ((2 + self.pid) * 347) % 255)
-        pygame.draw.polygon(screen, color, vertexScreenCoords)
-        pygame.draw.lines(screen, (255, 255, 255), True, vertexScreenCoords, 1)
-        pygame.draw.aalines(screen, (255, 255, 255), True, vertexScreenCoords, 1)
-        """
-        for i in range(len(self.vertices)):
-            pygame.draw.aaline(
-                screen, 
-                (255, 255, 255), 
-                vertexScreenCoords[i], 
-                vertexScreenCoords[(i + 1) % len(self.vertices)],
-                2
-            )
-            #pygame.gfxdraw.line(
-            #    screen, 
-            #    vertexScreenCoords[i][0], 
-            #    vertexScreenCoords[i][1], 
-            #    vertexScreenCoords[(i + 1) % len(self.vertices)][0], 
-            #    vertexScreenCoords[(i + 1) % len(self.vertices)][1], 
-            #    (200, 200, 200),
-            #)
-        """
+    def click(self, coords):
+        count = 0
+        if coords in self.bounds:
+            for v in range(len(self.vertices)):
+                if (coords.y <= self.vertices[v].y and coords.y >= self.vertices[v - 1].y
+                    or coords.y >= self.vertices[v].y and coords.y <= self.vertices[v - 1].y):
+                    slope = (self.vertices[v].x - self.vertices[v - 1].x) / (self.vertices[v].y - self.vertices[v - 1].y)
+                    if (coords.y - self.vertices[v].y) * slope + self.vertices[v].x >= coords.x:
+                        count += 1
+        if count & 1:
+            self.selected = True
+        else:
+            self.selected = False
+
+    def render(self, screen, bounds, time):
+        if self.bounds.overlap(bounds):
+            width, height = screen.get_size()
+            vertexScreenCoords = []
+            for vertex in self.vertices:
+                screenX = int((vertex.x - bounds.v1.x) * width / bounds.getWidth())
+                screenY = int((vertex.y - bounds.v1.y) * height / bounds.getHeight())
+                vertexScreenCoords.append((screenX, screenY))
+            color = ((self.pid * 347) % 255, ((1 + self.pid) * 347) % 255, ((2 + self.pid) * 347) % 255)
+            if self.selected:
+                coef = math.sin(time / 200.0) / 3.0 + 0.66
+                color = ((self.pid * 347) % 255 * (1 - coef) + 255 * coef, ((1 + self.pid) * 347) % 255 * (1 - coef) + 255 * coef, ((2 + self.pid) * 347) % 255 * (1 - coef) + 255 * coef)
+            pygame.draw.polygon(screen, color, vertexScreenCoords)
+            pygame.draw.lines(screen, (255, 255, 255), True, vertexScreenCoords, 2)
+

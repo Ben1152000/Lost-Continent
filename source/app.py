@@ -18,18 +18,18 @@ def main():
     GAMECLOCK = pygame.time.Clock()
     flags = pygame.DOUBLEBUF
     DISPLAYSCREEN = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), flags)
-    pygame.display.set_caption("Hyperagressive Birds")
+    pygame.display.set_caption("The Lost Continent")
     showMapScene()
 
 def showMapScene():
-    mainmap = game.mapping.Map("../resources/parsedMap.json")
-    viewport = game.rectangle.Rectangle(-15, -0, 35, 25)
+    mainmap = game.mapping.Map("../resources/map.json")
+    viewport = game.rectangle.Rectangle(-18, -0, 35, 25)
     font = pygame.font.Font(None, 30)
 
     ZOOMSPEED = 1
     MOVESPEED = 0.5
     MINZOOM = 5
-    MAXZOOM = 100
+    MAXZOOM = 130
     done = False
     while not done: # Game loop
         dt = GAMECLOCK.get_time() / 1000.0 # prev tick in seconds
@@ -40,6 +40,8 @@ def showMapScene():
                 if event.key == pygame.K_ESCAPE:
                     done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    mainmap.click(DISPLAYSCREEN, event.pos, viewport)
                 if event.button == 4:
                     if viewport.getWidth() > MINZOOM:
                         viewport.scale(-ZOOMSPEED * dt, -ZOOMSPEED * dt)
@@ -54,15 +56,15 @@ def showMapScene():
         if pressed[pygame.K_d]: viewport.translate(MOVESPEED * viewport.getWidth() * dt, 0)
         if pressed[pygame.K_s]: viewport.translate(0, -MOVESPEED * viewport.getWidth() * dt)
 
-        DISPLAYSCREEN.fill((0, 0, 0))
-        
+        DISPLAYSCREEN.fill((20, 40, 90))
+
+        mainmap.render(DISPLAYSCREEN, viewport, pygame.time.get_ticks())
+
         fpsLabel = font.render("fps: " + str(int(GAMECLOCK.get_fps())), True, (255, 255, 255))
         DISPLAYSCREEN.blit(fpsLabel, (0, 0))
 
-        mainmap.render(DISPLAYSCREEN, viewport)
         pygame.display.flip()
         GAMECLOCK.tick(FPS)
-
 
 
 def draw(surface):
