@@ -12,11 +12,11 @@ class Game():
             dataDict = json.loads(data.read())
             for provinceId in dataDict["provinces"]:
                 if int(provinceId) not in self.provinces:
-                    self.provinces[int(provinceId)] = Province(int(provinceId))
+                    self.provinces[int(provinceId)] = Province(self, int(provinceId))
                 self.provinces[int(provinceId)].update(dataDict["provinces"][provinceId])
             for factionId in dataDict["factions"]:
                 if factionId not in self.factions:
-                    self.factions[factionId] = Faction(factionId)
+                    self.factions[factionId] = Faction(self, factionId)
                 self.factions[factionId].update(dataDict["factions"][factionId])
 
     def __init__(self, provinces={}, factions={}):
@@ -54,11 +54,14 @@ class Game():
 
 class Province():
 
+    game = None
+
     name = ""
     id = 0
     neighbors = []
 
-    def __init__(self, provinceId):
+    def __init__(self, game, provinceId):
+        self.game = game
         self.provinceId = provinceId
 
     def update(self, dataDict):
@@ -66,6 +69,8 @@ class Province():
             setattr(self, key, dataDict[key])
 
 class Faction():
+
+    game = None
 
     id = "XXX"
 
@@ -80,7 +85,8 @@ class Faction():
 
     mercantilism = 0
 
-    def __init__(self, factionId):
+    def __init__(self, game, factionId):
+        self.game = game
         self.id = factionId
         self.explorers = [] # current explorers
         self.explored = {} # list of explored provinces
@@ -105,11 +111,15 @@ class Faction():
 
     def assignExplorer(self, provinceId):
         if len(self.explorers) < self.explorerLimit and provinceId not in self.explored:
-            self.explorers.append({
-                "provinceId": provinceId,
-                "remainingTime": self.explorerDuration 
-            })
-            self.explored[provinceId] = False
+            accessible = self.game.provinces[provinceId].coastal
+            for neighborId in self.game.provinces[provinceId].neighbors:
+                accessible = accessible or (neighborId in self.explored and self.explored[neighborId])
+            if accessible:
+                self.explorers.append({
+                    "provinceId": provinceId,
+                    "remainingTime": self.explorerDuration 
+                })
+                self.explored[provinceId] = False
     
         
 if __name__ == "__main__":

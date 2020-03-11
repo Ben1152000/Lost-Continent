@@ -14,7 +14,8 @@ class Province():
     bounds = []
 
     selected = False
-    explored = False
+
+    backend = None
 
     def __init__(self, provinceDict):
         self.name = str(provinceDict["name"])
@@ -39,8 +40,9 @@ class Province():
             self.selected = True
         else:
             self.selected = False
+        return self.selected
 
-    def render(self, screen, bounds, time):
+    def render(self, screen, bounds, time, player):
         if self.bounds.overlap(bounds):
             width, height = screen.get_size()
             vertexScreenCoords = []
@@ -48,10 +50,16 @@ class Province():
                 screenX = int((vertex.x - bounds.v1.x) * width / bounds.getWidth())
                 screenY = int((vertex.y - bounds.v1.y) * height / bounds.getHeight())
                 vertexScreenCoords.append((screenX, screenY))
-            color = ((self.pid * 347) % 255, ((1 + self.pid) * 347) % 255, ((2 + self.pid) * 347) % 255)
-            if self.selected:
-                coef = math.sin(time / 200.0) / 3.0 + 0.66
-                color = ((self.pid * 347) % 255 * (1 - coef) + 255 * coef, ((1 + self.pid) * 347) % 255 * (1 - coef) + 255 * coef, ((2 + self.pid) * 347) % 255 * (1 - coef) + 255 * coef)
+            
+            color = pygame.Color(0, 0, 0)
+            hue = (self.pid * 580) % 255
+            sat = 50 * (self.pid in player.explored and player.explored[self.pid]) # if unexplored, set sat to 0
+            for explorer in player.explorers:
+                if explorer["provinceId"] == self.pid:
+                    sat = 50 * math.e ** (-explorer["remainingTime"] / 10)
+            val = 50 + 50 * (math.sin(time / 200.0) / 3.0 + 0.66) * (self.selected) # value varies if selected
+            color.hsva = (hue, sat, val)
+
             pygame.draw.polygon(screen, color, vertexScreenCoords)
-            pygame.draw.lines(screen, (255, 255, 255), True, vertexScreenCoords, 2)
+            pygame.draw.aalines(screen, (255, 255, 255), True, vertexScreenCoords, 2)
 

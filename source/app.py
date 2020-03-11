@@ -1,5 +1,6 @@
 import pygame, math
-import game
+import mapping
+from backend import game
 
 FPS = GAMECLOCK = DISPLAYSCREEN = None
 
@@ -8,8 +9,8 @@ def main():
 
     pygame.init()
 
-    FPS = 45
-    WINDOWWIDTH = 680
+    FPS = 30
+    WINDOWWIDTH = 800
     WINDOWHEIGHT = 480
     if False:
         WINDOWWIDTH = pygame.display.Info().current_w # Set the screen width and height to cover screen
@@ -22,23 +23,40 @@ def main():
     showMapScene()
 
 def showMapScene():
-    mainmap = game.mapping.Map("../resources/map.json")
-    viewport = game.rectangle.Rectangle(-18, -0, 35, 25)
+    mainmap = mapping.mapping.Map("../resources/map.json")
+    viewport = mapping.rectangle.Rectangle(-18, -0, 35, 25)
     font = pygame.font.Font(None, 30)
+    gameState = game.Game()
+    gameState.load("backend/data.json")
+    for province in mainmap.provinces:
+        province.backend = gameState.provinces[province.pid]
 
     ZOOMSPEED = 1
     MOVESPEED = 0.5
     MINZOOM = 5
     MAXZOOM = 130
+    TICKTIME = 0.05
+
+    timeSinceLastTick = 0
+
     done = False
     while not done: # Game loop
+        
         dt = GAMECLOCK.get_time() / 1000.0 # prev tick in seconds
+        timeSinceLastTick += dt
+
+        if timeSinceLastTick > TICKTIME:
+            timeSinceLastTick = 0
+            gameState.tick()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     done = True
+                if event.key == pygame.K_RETURN:
+                    gameState.execute("explore FRA " + str(mainmap.selected))
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     mainmap.click(DISPLAYSCREEN, event.pos, viewport)
@@ -58,23 +76,16 @@ def showMapScene():
 
         DISPLAYSCREEN.fill((20, 40, 90))
 
-        mainmap.render(DISPLAYSCREEN, viewport, pygame.time.get_ticks())
+        mainmap.render(DISPLAYSCREEN, viewport, pygame.time.get_ticks(), gameState.factions["FRA"])
 
         fpsLabel = font.render("fps: " + str(int(GAMECLOCK.get_fps())), True, (255, 255, 255))
-        DISPLAYSCREEN.blit(fpsLabel, (0, 0))
+        DISPLAYSCREEN.blit(fpsLabel, (5, 5))
+
+        dateLabel = font.render(str(gameState.date), True, (255, 255, 255))
+        DISPLAYSCREEN.blit(dateLabel, (5, 30))
 
         pygame.display.flip()
         GAMECLOCK.tick(FPS)
-
-
-def draw(surface):
-    color = (255, 0, 0) # red
-    
-    # draw a rectangle
-    pygame.draw.rect(surface, color, pygame.Rect(10, 10, 100, 100), 10)
-
-    # draw a circle
-    pygame.draw.circle(surface, color, (300, 60), 50, 10)
 
 if __name__ == "__main__":
     main()
