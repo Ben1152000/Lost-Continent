@@ -11,7 +11,7 @@ def main():
 
     FPS = 30
     WINDOWWIDTH = 800
-    WINDOWHEIGHT = 480
+    WINDOWHEIGHT = 600
     if False:
         WINDOWWIDTH = pygame.display.Info().current_w # Set the screen width and height to cover screen
         WINDOWHEIGHT = pygame.display.Info().current_h - 92 # 92 for bottom bar
@@ -30,6 +30,12 @@ def showMapScene():
     gameState.load("backend/data.json")
     for province in mainmap.provinces:
         province.backend = gameState.provinces[province.pid]
+
+    provenceMenu = mapping.menu.Menu(mainmap)
+
+    menuHeight = 150
+    mainmapRect = mapping.rectangle.Rectangle(0, DISPLAYSCREEN.get_width(), 0, DISPLAYSCREEN.get_height() - menuHeight)
+    menuRect = mapping.rectangle.Rectangle(0, DISPLAYSCREEN.get_width(), DISPLAYSCREEN.get_height() - menuHeight, DISPLAYSCREEN.get_height())
 
     ZOOMSPEED = 1
     MOVESPEED = 0.5
@@ -59,7 +65,11 @@ def showMapScene():
                     gameState.execute("explore FRA " + str(mainmap.selected))
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    mainmap.click(DISPLAYSCREEN, event.pos, viewport)
+                    clickPos = mapping.vertex.Vertex(event.pos[0], event.pos[1])
+                    if clickPos in mainmapRect:
+                        mainmap.click(DISPLAYSCREEN, mainmapRect, event.pos, viewport)
+                    elif clickPos in menuRect:
+                        provenceMenu.click(DISPLAYSCREEN, menuRect, event.pos)
                 if event.button == 4:
                     if viewport.getWidth() > MINZOOM:
                         viewport.scale(-ZOOMSPEED * dt, -ZOOMSPEED * dt)
@@ -76,7 +86,8 @@ def showMapScene():
 
         DISPLAYSCREEN.fill((20, 40, 90))
 
-        mainmap.render(DISPLAYSCREEN, viewport, pygame.time.get_ticks(), gameState.factions["FRA"])
+        mainmap.render(DISPLAYSCREEN, mainmapRect, viewport, pygame.time.get_ticks(), gameState.factions["FRA"], font)
+        provenceMenu.render(DISPLAYSCREEN, menuRect, font)
 
         fpsLabel = font.render("fps: " + str(int(GAMECLOCK.get_fps())), True, (255, 255, 255))
         DISPLAYSCREEN.blit(fpsLabel, (5, 5))

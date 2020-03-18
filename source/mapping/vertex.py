@@ -27,6 +27,13 @@ class Vertex():
     def __str__(self):
         return "(" + str(self.x) + ", " + str(self.y) + ")"
 
+    def __mul__(self, other):
+        return Vertex(self.x * other, self.y * other)
+
+    def floor(self):
+        self.x = int(self.x)
+        self.y = int(self.y)
+
 if __name__ == "__main__":
     v = Vertex(4, 8)
     u = Vertex(3, 2)

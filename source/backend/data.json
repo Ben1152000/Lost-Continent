@@ -32,7 +32,7 @@
             "id": 1,
             "coastal": true,
             "neighbors": [2, 3],
-            "terrain": "drylands",
+            "biome": "drylands",
             "resource": "",
             "resourceMultiplier": 1
         },
@@ -41,969 +41,1128 @@
             "region": "tunisia",
             "id": 2,
             "coastal": true,
-            "neighbors": [1, 3, 6, 14]
+            "neighbors": [1, 3, 6, 14],
+            "biome": "desert"
         }, 
         "3": {
             "name": "constantine", 
             "region": "algeria",
             "id": 3,
             "coastal": true,
-            "neighbors": [1, 2, 4, 6]
+            "neighbors": [1, 2, 4, 6],
+            "biome": "highlands"
         }, 
         "4": {
             "name": "algiers", 
             "region": "algeria",
             "id": 4,
             "coastal": true,
-            "neighbors": [3, 5, 6]
+            "neighbors": [3, 5, 6],
+            "biome": "drylands"
         }, 
         "5": {
             "name": "oran", 
             "region": "algeria",
             "id": 5,
             "coastal": true,
-            "neighbors": [4, 6, 7, 9]
+            "neighbors": [4, 6, 7, 9],
+            "biome": "drylands"
         }, 
         "6": {
             "name": "touggourt", 
             "region": "algeria",
             "id": 6,
             "coastal": false,
-            "neighbors": [2, 3, 4, 5, 7, 14, 57, 69]
+            "neighbors": [2, 3, 4, 5, 7, 14, 57, 69],
+            "biome": "desert"
         }, 
         "7": {
             "name": "saoura", 
             "region": "algeria",
             "id": 7,
             "coastal": false,
-            "neighbors": [5, 6, 9, 12, 13, 53, 55, 56, 57]
+            "neighbors": [5, 6, 9, 12, 13, 53, 55, 56, 57],
+            "biome": "desert"
         }, 
         "8": {
             "name": "tangiers", 
             "region": "morocco",
             "id": 8,
             "coastal": true,
-            "neighbors": [9, 10]
+            "neighbors": [9, 10],
+            "biome": "drylands"
         }, 
         "9": {
             "name": "fez", 
             "region": "morocco",
             "id": 9,
             "coastal": true,
-            "neighbors": [5, 7, 8, 10, 12]
+            "neighbors": [5, 7, 8, 10, 12],
+            "biome": "mountains"
         }, 
         "10": {
             "name": "rabat", 
             "region": "morocco",
             "id": 10,
             "coastal": true,
-            "neighbors": [8, 9, 11, 12]
+            "neighbors": [8, 9, 11, 12],
+            "biome": "drylands"
         }, 
         "11": {
             "name": "marrakesh", 
             "region": "morocco",
             "id": 11,
             "coastal": true,
-            "neighbors": [10, 12, 13]
+            "neighbors": [10, 12, 13],
+            "biome": "drylands"
         }, 
         "12": {
             "name": "tafilalt", 
             "region": "morocco",
             "id": 12,
             "coastal": false,
-            "neighbors": [7, 9, 10, 11, 13]
+            "neighbors": [7, 9, 10, 11, 13],
+            "biome": "highlands"
         }, 
         "13": {
             "name": "sus", 
             "region": "morocco",
             "id": 13,
             "coastal": true,
-            "neighbors": [7, 11, 12, 53]
+            "neighbors": [7, 11, 12, 53],
+            "biome": "drylands"
         }, 
         "14": {
             "name": "tripolitania", 
             "region": "libya",
             "id": 14,
             "coastal": true,
-            "neighbors": [2, 6, 15, 69, 73]
+            "neighbors": [2, 6, 15, 69, 73],
+            "biome": "desert"
         }, 
         "15": {
             "name": "cyrenaica", 
             "region": "libya",
             "id": 15,
             "coastal": true,
-            "neighbors": [14, 16, 25, 73]
+            "neighbors": [14, 16, 25, 73],
+            "biome": "desert"
         }, 
         "16": {
             "name": "el-alamein", 
             "region": "egypt",
             "id": 16,
             "coastal": true,
-            "neighbors": [15, 17, 20, 21, 22, 23, 25]
+            "neighbors": [15, 17, 20, 21, 22, 23, 25],
+            "biome": "desert"
         }, 
         "17": {
             "name": "alexandria", 
             "id": 17,
             "coastal": true,
-            "neighbors": [16, 18, 19, 20]
+            "neighbors": [16, 18, 19, 20],
+            "biome": "grasslands"
         }, 
         "18": {
             "name": "delta", 
             "id": 18,
             "coastal": true,
-            "neighbors": [17, 19, 24]
+            "neighbors": [17, 19, 24],
+            "biome": "marshlands"
         }, 
         "19": {
             "name": "cairo", 
             "id": 19,
             "coastal": true,
-            "neighbors": [17, 18, 20, 21, 24]
+            "neighbors": [17, 18, 20, 21, 24],
+            "biome": "grasslands"
         }, 
         "20": {
             "name": "faiyum", 
             "id": 20,
             "coastal": false,
-            "neighbors": [16, 17, 19, 21]
+            "neighbors": [16, 17, 19, 21],
+            "biome": "grasslands"
         }, 
         "21": {
             "name": "asyut", 
             "id": 21,
             "coastal": true,
-            "neighbors": [16, 19, 20, 22]
+            "neighbors": [16, 19, 20, 22],
+            "biome": "drylands"
         }, 
         "22": {
             "name": "luxor", 
             "id": 22,
             "coastal": true,
-            "neighbors": [16, 21, 23]
+            "neighbors": [16, 21, 23],
+            "biome": "drylands"
         }, 
         "23": {
             "name": "aswan", 
             "id": 23,
             "coastal": true,
-            "neighbors": [16, 22, 25, 26]
+            "neighbors": [16, 22, 25, 26],
+            "biome": "desert"
         }, 
         "24": {
             "name": "sinai", 
             "id": 24,
             "coastal": true,
-            "neighbors": [18, 19]
+            "neighbors": [18, 19],
+            "biome": "highlands"
         }, 
         "25": {
             "name": "nubia", 
             "id": 25,
             "coastal": false,
-            "neighbors": [15, 16, 23, 26, 27, 30, 31, 73]
+            "neighbors": [15, 16, 23, 26, 27, 30, 31, 73],
+            "biome": "desert"
         }, 
         "26": {
             "name": "suakin", 
             "id": 26,
             "coastal": true,
-            "neighbors": [23, 25, 27, 35]
+            "neighbors": [23, 25, 27, 35],
+            "biome": "highlands"
         }, 
         "27": {
             "name": "khartoum", 
             "id": 27,
             "coastal": false,
-            "neighbors": [25, 26, 28, 29, 30, 35]
+            "neighbors": [25, 26, 28, 29, 30, 35],
+            "biome": "drylands"
         }, 
         "28": {
             "name": "blue-nile", 
             "id": 28,
             "coastal": false,
-            "neighbors": [27, 29, 32, 35, 38, 40, 41]
+            "neighbors": [27, 29, 32, 35, 38, 40, 41],
+            "biome": "steppe"
         }, 
         "29": {
             "name": "white-nile", 
             "id": 29,
             "coastal": false,
-            "neighbors": [27, 28, 30, 32]
+            "neighbors": [27, 28, 30, 32],
+            "biome": "drylands"
         }, 
         "30": {
             "name": "kordofan", 
             "id": 30,
             "coastal": false,
-            "neighbors": [25, 27, 29, 31, 32, 33]
+            "neighbors": [25, 27, 29, 31, 32, 33],
+            "biome": "steppe"
         }, 
         "31": {
             "name": "darfur", 
             "id": 31,
             "coastal": false,
-            "neighbors": [25, 30, 33, 73, 75, 104]
+            "neighbors": [25, 30, 33, 73, 75, 104],
+            "biome": "highlands"
         }, 
         "32": {
             "name": "upper-nile", 
             "id": 32,
             "coastal": false,
-            "neighbors": [28, 29, 30, 33, 34, 41, 43]
+            "neighbors": [28, 29, 30, 33, 34, 41, 43],
+            "biome": "marshlands"
         }, 
         "33": {
             "name": "bar-el-gazal", 
             "id": 33,
             "coastal": false,
-            "neighbors": [30, 31, 32, 34, 104, 113]
+            "neighbors": [30, 31, 32, 34, 104, 113],
+            "biome": "savanna"
         }, 
         "34": {
             "name": "equatoria", 
             "id": 34,
             "coastal": false,
-            "neighbors": [32, 33, 43, 113, 122, 125]
+            "neighbors": [32, 33, 43, 113, 122, 125],
+            "biome": "savanna"
         }, 
         "35": {
             "name": "eritrea", 
             "id": 35,
             "coastal": true,
-            "neighbors": [26, 27, 28, 36, 37, 38]
+            "neighbors": [26, 27, 28, 36, 37, 38],
+            "biome": "highlands"
         }, 
         "36": {
             "name": "afar", 
             "id": 36,
             "coastal": true,
-            "neighbors": [35, 37, 39, 47]
+            "neighbors": [35, 37, 39, 47],
+            "biome": "desert"
         }, 
         "37": {
             "name": "tigray", 
             "id": 37,
             "coastal": false,
-            "neighbors": [35, 36, 38, 39]
+            "neighbors": [35, 36, 38, 39],
+            "biome": "mountains"
         }, 
         "38": {
             "name": "semien", 
             "id": 38,
             "coastal": false,
-            "neighbors": [28, 35, 37, 39, 40]
+            "neighbors": [28, 35, 37, 39, 40],
+            "biome": "highlands"
         }, 
         "39": {
             "name": "wollo", 
             "id": 39,
             "coastal": false,
-            "neighbors": [36, 37, 38, 40, 42, 45, 47]
+            "neighbors": [36, 37, 38, 40, 42, 45, 47],
+            "biome": "drylands"
         }, 
         "40": {
             "name": "gojjam", 
             "id": 40,
             "coastal": false,
-            "neighbors": [28, 38, 39, 41, 42]
+            "neighbors": [28, 38, 39, 41, 42],
+            "biome": "highlands"
         }, 
         "41": {
             "name": "welega", 
             "id": 41,
             "coastal": false,
-            "neighbors": [28, 32, 40, 42, 43]
+            "neighbors": [28, 32, 40, 42, 43],
+            "biome": "highlands"
         }, 
         "42": {
             "name": "shewa", 
             "id": 42,
             "coastal": false,
-            "neighbors": [39, 40, 41, 43, 44, 45]
+            "neighbors": [39, 40, 41, 43, 44, 45],
+            "biome": "mountains"
         }, 
         "43": {
             "name": "kaffa", 
             "id": 43,
             "coastal": false,
-            "neighbors": [32, 34, 41, 42, 44, 126]
+            "neighbors": [32, 34, 41, 42, 44, 126],
+            "biome": "mountains"
         }, 
         "44": {
             "name": "sidamo", 
             "id": 44,
             "coastal": false,
-            "neighbors": [42, 43, 45, 46, 126]
+            "neighbors": [42, 43, 45, 46, 126],
+            "biome": "highlands"
         }, 
         "45": {
             "name": "harar", 
             "id": 45,
             "coastal": false,
-            "neighbors": [39, 42, 44, 46, 47, 48]
+            "neighbors": [39, 42, 44, 46, 47, 48],
+            "biome": "highlands"
         }, 
         "46": {
             "name": "ogaden", 
             "id": 46,
             "coastal": false,
-            "neighbors": [44, 45, 48, 50, 51, 52, 126]
+            "neighbors": [44, 45, 48, 50, 51, 52, 126],
+            "biome": "highlands"
         }, 
         "47": {
             "name": "adal", 
             "id": 47,
             "coastal": true,
-            "neighbors": [36, 39, 45, 48]
+            "neighbors": [36, 39, 45, 48],
+            "biome": "desert"
         }, 
         "48": {
             "name": "warsangali", 
             "id": 48,
             "coastal": true,
-            "neighbors": [45, 46, 47, 49, 50]
+            "neighbors": [45, 46, 47, 49, 50],
+            "biome": "desert"
         }, 
         "49": {
             "name": "punt", 
             "id": 49,
             "coastal": true,
-            "neighbors": [48, 50]
+            "neighbors": [48, 50],
+            "biome": "desert"
         }, 
         "50": {
             "name": "galmudug", 
             "id": 50,
             "coastal": true,
-            "neighbors": [46, 48, 49, 51]
+            "neighbors": [46, 48, 49, 51],
+            "biome": "steppe"
         }, 
         "51": {
             "name": "mogadishu", 
             "id": 51,
             "coastal": true,
-            "neighbors": [46, 50, 52]
+            "neighbors": [46, 50, 52],
+            "biome": "steppe"
         }, 
         "52": {
             "name": "juba", 
             "id": 52,
             "coastal": true,
-            "neighbors": [46, 51, 126, 129]
+            "neighbors": [46, 51, 126, 129],
+            "biome": "savanna"
         }, 
         "53": {
             "name": "western-sahara", 
             "id": 53,
             "coastal": true,
-            "neighbors": [7, 13, 54, 55]
+            "neighbors": [7, 13, 54, 55],
+            "biome": "desert"
         }, 
         "54": {
             "name": "arguin", 
             "id": 54,
             "coastal": true,
-            "neighbors": [53, 55, 61, 62]
+            "neighbors": [53, 55, 61, 62],
+            "biome": "desert"
         }, 
         "55": {
             "name": "mauritania", 
             "id": 55,
             "coastal": false,
-            "neighbors": [7, 53, 54, 56, 58, 59, 62]
+            "neighbors": [7, 53, 54, 56, 58, 59, 62],
+            "biome": "desert"
         }, 
         "56": {
             "name": "timbuktu", 
             "id": 56,
             "coastal": false,
-            "neighbors": [7, 55, 57, 58]
+            "neighbors": [7, 55, 57, 58],
+            "biome": "desert"
         }, 
         "57": {
             "name": "gao", 
             "id": 57,
             "coastal": false,
-            "neighbors": [6, 7, 56, 58, 66, 67, 68, 69]
+            "neighbors": [6, 7, 56, 58, 66, 67, 68, 69],
+            "biome": "steppe"
         }, 
         "58": {
             "name": "mali", 
             "id": 58,
             "coastal": false,
-            "neighbors": [55, 56, 57, 59, 60, 64, 66]
+            "neighbors": [55, 56, 57, 59, 60, 64, 66],
+            "biome": "marshlands"
         }, 
         "59": {
             "name": "kayes", 
             "id": 59,
             "coastal": false,
-            "neighbors": [55, 58, 60, 62, 80, 81]
+            "neighbors": [55, 58, 60, 62, 80, 81],
+            "biome": "savanna"
         }, 
         "60": {
             "name": "sikasso", 
             "id": 60,
             "coastal": false,
-            "neighbors": [58, 59, 64, 81, 85]
+            "neighbors": [58, 59, 64, 81, 85],
+            "biome": "savanna"
         }, 
         "61": {
             "name": "senegal", 
             "id": 61,
             "coastal": true,
-            "neighbors": [54, 62, 63]
+            "neighbors": [54, 62, 63],
+            "biome": "savanna"
         }, 
         "62": {
             "name": "fulo", 
             "id": 62,
             "coastal": false,
-            "neighbors": [54, 55, 59, 61, 63, 80]
+            "neighbors": [54, 55, 59, 61, 63, 80],
+            "biome": "savanna"
         }, 
         "63": {
             "name": "gambia", 
             "id": 63,
             "coastal": true,
-            "neighbors": [61, 62, 79, 80]
+            "neighbors": [61, 62, 79, 80],
+            "biome": "savanna"
         }, 
         "64": {
             "name": "houet", 
             "id": 64,
             "coastal": false,
-            "neighbors": [58, 60, 65, 66, 85, 87, 89]
+            "neighbors": [58, 60, 65, 66, 85, 87, 89],
+            "biome": "savanna"
         }, 
         "65": {
             "name": "upper-volta", 
             "id": 65,
             "coastal": false,
-            "neighbors": [64, 66, 67, 89, 91]
+            "neighbors": [64, 66, 67, 89, 91],
+            "biome": "savanna"
         }, 
         "66": {
             "name": "songhai", 
             "id": 66,
             "coastal": false,
-            "neighbors": [57, 58, 64, 65, 67]
+            "neighbors": [57, 58, 64, 65, 67],
+            "biome": "savanna"
         }, 
         "67": {
             "name": "niger", 
             "id": 67,
             "coastal": false,
-            "neighbors": [57, 65, 66, 68, 70, 91]
+            "neighbors": [57, 65, 66, 68, 70, 91],
+            "biome": "steppe"
         }, 
         "68": {
             "name": "hausaland", 
             "id": 68,
             "coastal": false,
-            "neighbors": [57, 67, 69, 70, 71, 72]
+            "neighbors": [57, 67, 69, 70, 71, 72],
+            "biome": "steppe"
         }, 
         "69": {
             "name": "agadez", 
             "id": 69,
             "coastal": false,
-            "neighbors": [6, 14, 57, 68, 72, 73, 74]
+            "neighbors": [6, 14, 57, 68, 72, 73, 74],
+            "biome": "desert"
         }, 
         "70": {
             "name": "sokoto", 
             "id": 70,
             "coastal": false,
-            "neighbors": [67, 68, 71, 91, 94]
+            "neighbors": [67, 68, 71, 91, 94],
+            "biome": "savanna"
         }, 
         "71": {
             "name": "kaduna", 
             "id": 71,
             "coastal": false,
-            "neighbors": [68, 70, 72, 94, 96, 98]
+            "neighbors": [68, 70, 72, 94, 96, 98],
+            "biome": "savanna"
         }, 
         "72": {
             "name": "bornu", 
             "id": 72,
             "coastal": false,
-            "neighbors": [68, 69, 71, 78, 98]
+            "neighbors": [68, 69, 71, 78, 98],
+            "biome": "steppe"
         }, 
         "73": {
             "name": "sahara", 
             "id": 73,
             "coastal": false,
-            "neighbors": [14, 15, 25, 31, 69, 74, 75]
+            "neighbors": [14, 15, 25, 31, 69, 74, 75],
+            "biome": "desert"
         }, 
         "74": {
             "name": "kanem", 
             "id": 74,
             "coastal": false,
-            "neighbors": [69, 73, 75, 76]
+            "neighbors": [69, 73, 75, 76],
+            "biome": "steppe"
         }, 
         "75": {
             "name": "wadai", 
             "id": 75,
             "coastal": false,
-            "neighbors": [31, 73, 74, 76, 77, 104]
+            "neighbors": [31, 73, 74, 76, 77, 104],
+            "biome": "steppe"
         }, 
         "76": {
             "name": "east-tchad", 
             "id": 76,
             "coastal": false,
-            "neighbors": [74, 75, 77, 78]
+            "neighbors": [74, 75, 77, 78],
+            "biome": "savanna"
         }, 
         "77": {
             "name": "logone", 
             "id": 77,
             "coastal": false,
-            "neighbors": [75, 76, 78, 100, 103, 104]
+            "neighbors": [75, 76, 78, 100, 103, 104],
+            "biome": "savanna"
         }, 
         "78": {
             "name": "south-tchad", 
             "id": 78,
             "coastal": false,
-            "neighbors": [72, 76, 77, 98, 100]
+            "neighbors": [72, 76, 77, 98, 100],
+            "biome": "marshlands"
         }, 
         "79": {
             "name": "bissau", 
             "id": 79,
             "coastal": true,
-            "neighbors": [63, 80]
+            "neighbors": [63, 80],
+            "biome": "savanna"
         }, 
         "80": {
             "name": "guinea", 
             "id": 80,
             "coastal": true,
-            "neighbors": [59, 62, 63, 79, 81, 82]
+            "neighbors": [59, 62, 63, 79, 81, 82],
+            "biome": "savanna"
         }, 
         "81": {
             "name": "wassoulou", 
             "id": 81,
             "coastal": false,
-            "neighbors": [59, 60, 80, 82, 83, 85, 86]
+            "neighbors": [59, 60, 80, 82, 83, 85, 86],
+            "biome": "highlands"
         }, 
         "82": {
             "name": "sierra-leone", 
             "id": 82,
             "coastal": true,
-            "neighbors": [80, 81, 83]
+            "neighbors": [80, 81, 83],
+            "biome": "jungle"
         }, 
         "83": {
             "name": "pepper-coast", 
             "id": 83,
             "coastal": true,
-            "neighbors": [81, 82, 84, 86]
+            "neighbors": [81, 82, 84, 86],
+            "biome": "jungle"
         }, 
         "84": {
             "name": "grain-coast", 
             "id": 84,
             "coastal": true,
-            "neighbors": [83, 86]
+            "neighbors": [83, 86],
+            "biome": "jungle"
         }, 
         "85": {
             "name": "sangbe", 
             "id": 85,
             "coastal": false,
-            "neighbors": [60, 64, 81, 86, 87, 88]
+            "neighbors": [60, 64, 81, 86, 87, 88],
+            "biome": "jungle"
         }, 
         "86": {
             "name": "ivory-coast", 
             "id": 86,
             "coastal": true,
-            "neighbors": [81, 83, 84, 85, 88]
+            "neighbors": [81, 83, 84, 85, 88],
+            "biome": "jungle"
         }, 
         "87": {
             "name": "zanzan", 
             "id": 87,
             "coastal": false,
-            "neighbors": [64, 85, 88, 89, 90]
+            "neighbors": [64, 85, 88, 89, 90],
+            "biome": "jungle"
         }, 
         "88": {
             "name": "abidjan", 
             "id": 88,
             "coastal": true,
-            "neighbors": [85, 86, 87, 90]
+            "neighbors": [85, 86, 87, 90],
+            "biome": "jungle"
         }, 
         "89": {
             "name": "lower-volta", 
             "id": 89,
             "coastal": false,
-            "neighbors": [64, 65, 87, 90, 91, 92]
+            "neighbors": [64, 65, 87, 90, 91, 92],
+            "biome": "savanna"
         }, 
         "90": {
             "name": "gold-coast", 
             "id": 90,
             "coastal": true,
-            "neighbors": [87, 88, 89, 92]
+            "neighbors": [87, 88, 89, 92],
+            "biome": "jungle"
         }, 
         "91": {
             "name": "dagbon", 
             "id": 91,
             "coastal": false,
-            "neighbors": [65, 67, 70, 89, 92, 93, 94]
+            "neighbors": [65, 67, 70, 89, 92, 93, 94],
+            "biome": "savanna"
         }, 
         "92": {
             "name": "dahomey", 
             "id": 92,
             "coastal": true,
-            "neighbors": [89, 90, 91, 93]
+            "neighbors": [89, 90, 91, 93],
+            "biome": "jungle"
         }, 
         "93": {
             "name": "oyo", 
             "id": 93,
             "coastal": true,
-            "neighbors": [91, 92, 94, 95]
+            "neighbors": [91, 92, 94, 95],
+            "biome": "grasslands"
         }, 
         "94": {
             "name": "kwara", 
             "id": 94,
             "coastal": false,
-            "neighbors": [70, 71, 91, 93, 95, 96]
+            "neighbors": [70, 71, 91, 93, 95, 96],
+            "biome": "savanna"
         }, 
         "95": {
             "name": "edo", 
             "id": 95,
             "coastal": true,
-            "neighbors": [93, 94, 96, 97]
+            "neighbors": [93, 94, 96, 97],
+            "biome": "jungle"
         }, 
         "96": {
             "name": "abuja", 
             "id": 96,
             "coastal": false,
-            "neighbors": [71, 94, 95, 97, 98]
+            "neighbors": [71, 94, 95, 97, 98],
+            "biome": "savanna"
         }, 
         "97": {
             "name": "biafra", 
             "id": 97,
             "coastal": true,
-            "neighbors": [95, 96, 98, 99]
+            "neighbors": [95, 96, 98, 99],
+            "biome": "jungle"
         }, 
         "98": {
             "name": "benue", 
             "id": 98,
             "coastal": false,
-            "neighbors": [71, 72, 78, 96, 97, 99, 100]
+            "neighbors": [71, 72, 78, 96, 97, 99, 100],
+            "biome": "jungle"
         }, 
         "99": {
             "name": "west-cameroon", 
             "id": 99,
             "coastal": true,
-            "neighbors": [97, 98, 100, 101]
+            "neighbors": [97, 98, 100, 101],
+            "biome": "jungle"
         }, 
         "100": {
             "name": "adamaoua", 
             "id": 100,
             "coastal": false,
-            "neighbors": [77, 78, 98, 99, 101, 102, 103]
+            "neighbors": [77, 78, 98, 99, 101, 102, 103],
+            "biome": "jungle"
         }, 
         "101": {
             "name": "cameroon", 
             "id": 101,
             "coastal": true,
-            "neighbors": [99, 100, 102, 105, 107]
+            "neighbors": [99, 100, 102, 105, 107],
+            "biome": "jungle"
         }, 
         "102": {
             "name": "east-cameroon", 
             "id": 102,
             "coastal": false,
-            "neighbors": [100, 101, 103, 107, 108]
+            "neighbors": [100, 101, 103, 107, 108],
+            "biome": "jungle"
         }, 
         "103": {
             "name": "bangui", 
             "id": 103,
             "coastal": false,
-            "neighbors": [77, 100, 102, 104, 108, 112]
+            "neighbors": [77, 100, 102, 104, 108, 112],
+            "biome": "jungle"
         }, 
         "104": {
             "name": "kotto", 
             "id": 104,
             "coastal": false,
-            "neighbors": [31, 33, 75, 77, 103, 112, 113]
+            "neighbors": [31, 33, 75, 77, 103, 112, 113],
+            "biome": "jungle"
         }, 
         "105": {
             "name": "equitorial-guinea", 
             "id": 105,
             "coastal": true,
-            "neighbors": [101, 106, 107]
+            "neighbors": [101, 106, 107],
+            "biome": "jungle"
         }, 
         "106": {
             "name": "gabon", 
             "id": 106,
             "coastal": true,
-            "neighbors": [105, 107, 109]
+            "neighbors": [105, 107, 109],
+            "biome": "jungle"
         }, 
         "107": {
             "name": "ogowe", 
             "id": 107,
             "coastal": false,
-            "neighbors": [101, 102, 105, 106, 108, 109]
+            "neighbors": [101, 102, 105, 106, 108, 109],
+            "biome": "jungle"
         }, 
         "108": {
             "name": "upper-congo", 
             "id": 108,
             "coastal": false,
-            "neighbors": [102, 103, 107, 109, 111, 112]
+            "neighbors": [102, 103, 107, 109, 111, 112],
+            "biome": "jungle"
         }, 
         "109": {
             "name": "north-congo", 
             "id": 109,
             "coastal": true,
-            "neighbors": [106, 107, 108, 110, 111]
+            "neighbors": [106, 107, 108, 110, 111],
+            "biome": "jungle"
         }, 
         "110": {
             "name": "south-congo", 
             "id": 110,
             "coastal": true,
-            "neighbors": [109, 111, 117]
+            "neighbors": [109, 111, 117],
+            "biome": "grasslands"
         }, 
         "111": {
             "name": "bandundu", 
             "id": 111,
             "coastal": false,
-            "neighbors": [108, 109, 110, 112, 114, 117, 119]
+            "neighbors": [108, 109, 110, 112, 114, 117, 119],
+            "biome": "jungle"
         }, 
         "112": {
             "name": "equateur", 
             "id": 112,
             "coastal": false,
-            "neighbors": [103, 104, 108, 111, 113, 114]
+            "neighbors": [103, 104, 108, 111, 113, 114],
+            "biome": "jungle"
         }, 
         "113": {
             "name": "wele", 
             "id": 113,
             "coastal": false,
-            "neighbors": [33, 34, 104, 112, 114, 115, 122, 123]
+            "neighbors": [33, 34, 104, 112, 114, 115, 122, 123],
+            "biome": "jungle"
         }, 
         "114": {
             "name": "kasai", 
             "id": 114,
             "coastal": false,
-            "neighbors": [111, 112, 113, 115, 116, 119]
+            "neighbors": [111, 112, 113, 115, 116, 119],
+            "biome": "jungle"
         }, 
         "115": {
             "name": "kivu", 
             "id": 115,
             "coastal": false,
-            "neighbors": [113, 114, 116, 123, 130]
+            "neighbors": [113, 114, 116, 123, 130],
+            "biome": "jungle"
         }, 
         "116": {
             "name": "katanga", 
             "id": 116,
             "coastal": false,
-            "neighbors": [114, 115, 119, 138, 139]
+            "neighbors": [114, 115, 119, 138, 139],
+            "biome": "highlands"
         }, 
         "117": {
             "name": "luanda", 
             "id": 117,
             "coastal": true,
-            "neighbors": [110, 111, 118, 119]
+            "neighbors": [110, 111, 118, 119],
+            "biome": "grasslands"
         }, 
         "118": {
             "name": "angola", 
             "id": 118,
             "coastal": true,
-            "neighbors": [117, 119, 120, 121]
+            "neighbors": [117, 119, 120, 121],
+            "biome": "drylands"
         }, 
         "119": {
             "name": "lunda", 
             "id": 119,
             "coastal": false,
-            "neighbors": [111, 114, 116, 117, 118, 121, 139]
+            "neighbors": [111, 114, 116, 117, 118, 121, 139],
+            "biome": "savanna"
         }, 
         "120": {
             "name": "mocamedes", 
             "id": 120,
             "coastal": true,
-            "neighbors": [118, 121, 149]
+            "neighbors": [118, 121, 149],
+            "biome": "savanna"
         }, 
         "121": {
             "name": "cuando", 
             "id": 121,
             "coastal": false,
-            "neighbors": [118, 119, 120, 139, 149, 151]
+            "neighbors": [118, 119, 120, 139, 149, 151],
+            "biome": "savanna"
         }, 
         "122": {
             "name": "albert-nile", 
             "id": 122,
             "coastal": false,
-            "neighbors": [34, 113, 123, 124, 125]
+            "neighbors": [34, 113, 123, 124, 125],
+            "biome": "savanna"
         }, 
         "123": {
             "name": "buganda", 
             "id": 123,
             "coastal": false,
-            "neighbors": [113, 115, 122, 124, 130, 131]
+            "neighbors": [113, 115, 122, 124, 130, 131],
+            "biome": "savanna"
         }, 
         "124": {
             "name": "mbale", 
             "id": 124,
             "coastal": false,
-            "neighbors": [122, 123, 125, 127]
+            "neighbors": [122, 123, 125, 127],
+            "biome": "savanna"
         }, 
         "125": {
             "name": "turkana", 
             "id": 125,
             "coastal": false,
-            "neighbors": [34, 122, 124, 126, 127, 128]
+            "neighbors": [34, 122, 124, 126, 127, 128],
+            "biome": "highlands"
         }, 
         "126": {
             "name": "ajuran", 
             "id": 126,
             "coastal": false,
-            "neighbors": [43, 44, 46, 52, 125, 128, 129]
+            "neighbors": [43, 44, 46, 52, 125, 128, 129],
+            "biome": "desert"
         }, 
         "127": {
             "name": "east-victoria", 
             "id": 127,
             "coastal": false,
-            "neighbors": [124, 125, 128, 132, 134]
+            "neighbors": [124, 125, 128, 132, 134],
+            "biome": "mountains"
         }, 
         "128": {
             "name": "nairobi", 
             "id": 128,
             "coastal": false,
-            "neighbors": [125, 126, 127, 129, 134]
+            "neighbors": [125, 126, 127, 129, 134],
+            "biome": "savanna"
         }, 
         "129": {
             "name": "mombasa", 
             "id": 129,
             "coastal": true,
-            "neighbors": [52, 126, 128, 134, 135]
+            "neighbors": [52, 126, 128, 134, 135],
+            "biome": "drylands"
         }, 
         "130": {
             "name": "ruanda", 
             "id": 130,
             "coastal": false,
-            "neighbors": [115, 123, 131, 133]
+            "neighbors": [115, 123, 131, 133],
+            "biome": "highlands"
         }, 
         "131": {
             "name": "kagera", 
             "id": 131,
             "coastal": false,
-            "neighbors": [123, 130, 132, 133]
+            "neighbors": [123, 130, 132, 133],
+            "biome": "highlands"
         }, 
         "132": {
             "name": "south-victoria", 
             "id": 132,
             "coastal": false,
-            "neighbors": [127, 131, 133, 134]
+            "neighbors": [127, 131, 133, 134],
+            "biome": "savanna"
         }, 
         "133": {
             "name": "kigoma", 
             "id": 133,
             "coastal": false,
-            "neighbors": [130, 131, 132, 134, 136]
+            "neighbors": [130, 131, 132, 134, 136],
+            "biome": "highlands"
         }, 
         "134": {
             "name": "dodoma", 
             "id": 134,
             "coastal": false,
-            "neighbors": [127, 128, 129, 132, 133, 135, 136, 137]
+            "neighbors": [127, 128, 129, 132, 133, 135, 136, 137],
+            "biome": "highlands"
         }, 
         "135": {
             "name": "swahili-coast", 
             "id": 135,
             "coastal": true,
-            "neighbors": [129, 134, 137]
+            "neighbors": [129, 134, 137],
+            "biome": "drylands"
         }, 
         "136": {
             "name": "rukwa", 
             "id": 136,
             "coastal": false,
-            "neighbors": [133, 134, 137, 138, 140]
+            "neighbors": [133, 134, 137, 138, 140],
+            "biome": "highlands"
         }, 
         "137": {
             "name": "kilwa", 
             "id": 137,
             "coastal": true,
-            "neighbors": [134, 135, 136, 142]
+            "neighbors": [134, 135, 136, 142],
+            "biome": "savanna"
         }, 
         "138": {
             "name": "luapula", 
             "id": 138,
             "coastal": false,
-            "neighbors": [116, 136, 139, 140, 143]
+            "neighbors": [116, 136, 139, 140, 143],
+            "biome": "highlands"
         }, 
         "139": {
             "name": "zambezi", 
             "id": 139,
             "coastal": false,
-            "neighbors": [116, 119, 121, 138, 143, 146, 151]
+            "neighbors": [116, 119, 121, 138, 143, 146, 151],
+            "biome": "savanna"
         }, 
         "140": {
             "name": "malawi", 
             "id": 140,
             "coastal": false,
-            "neighbors": [136, 138, 141, 143]
+            "neighbors": [136, 138, 141, 143],
+            "biome": "drylands"
         }, 
         "141": {
             "name": "yao", 
             "id": 141,
             "coastal": false,
-            "neighbors": [140, 142, 143, 144]
+            "neighbors": [140, 142, 143, 144],
+            "biome": "savanna"
         }, 
         "142": {
             "name": "mozambique", 
             "id": 142,
             "coastal": true,
-            "neighbors": [137, 141, 144]
+            "neighbors": [137, 141, 144],
+            "biome": "savanna"
         }, 
         "143": {
             "name": "tete", 
             "id": 143,
             "coastal": false,
-            "neighbors": [138, 139, 140, 141, 144, 146]
+            "neighbors": [138, 139, 140, 141, 144, 146],
+            "biome": "savanna"
         }, 
         "144": {
             "name": "sofala", 
             "id": 144,
             "coastal": true,
-            "neighbors": [141, 142, 143, 145, 146]
+            "neighbors": [141, 142, 143, 145, 146],
+            "biome": "jungle"
         }, 
         "145": {
             "name": "maputo", 
             "id": 145,
             "coastal": true,
-            "neighbors": [144, 146, 152, 154, 156]
+            "neighbors": [144, 146, 152, 154, 156],
+            "biome": "jungle"
         }, 
         "146": {
             "name": "zimbabwe", 
             "id": 146,
             "coastal": false,
-            "neighbors": [139, 143, 144, 145, 151, 152]
+            "neighbors": [139, 143, 144, 145, 151, 152],
+            "biome": "highlands"
         }, 
         "147": {
             "name": "north-madagascar", 
             "id": 147,
             "coastal": true,
-            "neighbors": [148]
+            "neighbors": [148],
+            "biome": "jungle"
         }, 
         "148": {
             "name": "south-madagascar", 
             "id": 148,
             "coastal": true,
-            "neighbors": [147]
+            "neighbors": [147],
+            "biome": "highlands"
         }, 
         "149": {
             "name": "kavango", 
             "id": 149,
             "coastal": true,
-            "neighbors": [120, 121, 150, 151]
+            "neighbors": [120, 121, 150, 151],
+            "biome": "drylands"
         }, 
         "150": {
             "name": "namibia", 
             "id": 150,
             "coastal": true,
-            "neighbors": [149, 151, 158]
+            "neighbors": [149, 151, 158],
+            "biome": "desert"
         }, 
         "151": {
             "name": "botswana", 
             "id": 151,
             "coastal": false,
-            "neighbors": [121, 139, 146, 149, 150, 152, 153, 158]
+            "neighbors": [121, 139, 146, 149, 150, 152, 153, 158],
+            "biome": "desert"
         }, 
         "152": {
             "name": "transvaal", 
             "id": 152,
             "coastal": false,
-            "neighbors": [145, 146, 151, 153, 154, 155]
+            "neighbors": [145, 146, 151, 153, 154, 155],
+            "biome": "highlands"
         }, 
         "153": {
             "name": "south-tswana", 
             "id": 153,
             "coastal": false,
-            "neighbors": [151, 152, 155, 158]
+            "neighbors": [151, 152, 155, 158],
+            "biome": "drylands"
         }, 
         "154": {
             "name": "swaziland", 
             "id": 154,
             "coastal": false,
-            "neighbors": [145, 152, 155, 156]
+            "neighbors": [145, 152, 155, 156],
+            "biome": "jungle"
         }, 
         "155": {
             "name": "sotho", 
             "id": 155,
             "coastal": false,
-            "neighbors": [152, 153, 154, 156, 157, 158]
+            "neighbors": [152, 153, 154, 156, 157, 158],
+            "biome": "mountains"
         }, 
         "156": {
             "name": "natal", 
             "id": 156,
             "coastal": true,
-            "neighbors": [145, 154, 155, 157]
+            "neighbors": [145, 154, 155, 157],
+            "biome": "jungle"
         }, 
         "157": {
             "name": "xhosa", 
             "id": 157,
             "coastal": true,
-            "neighbors": [155, 156, 158, 159]
+            "neighbors": [155, 156, 158, 159],
+            "biome": "mountains"
         }, 
         "158": {
             "name": "northern-cape", 
             "id": 158,
             "coastal": true,
-            "neighbors": [150, 151, 153, 155, 157, 159, 160]
+            "neighbors": [150, 151, 153, 155, 157, 159, 160],
+            "biome": "drylands"
         }, 
         "159": {
             "name": "eastern-cape", 
             "id": 159,
             "coastal": true,
-            "neighbors": [157, 158, 160]
+            "neighbors": [157, 158, 160],
+            "biome": "steppe"
         }, 
         "160": {
             "name": "southern-cape", 
             "id": 160,
             "coastal": true,
-            "neighbors": [158, 159]
+            "neighbors": [158, 159],
+            "biome": "grasslands"
         }
     }
 }

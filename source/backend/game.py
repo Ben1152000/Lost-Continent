@@ -59,6 +59,7 @@ class Province():
     name = ""
     id = 0
     neighbors = []
+    biome = ""
 
     def __init__(self, game, provinceId):
         self.game = game
@@ -74,7 +75,7 @@ class Faction():
 
     id = "XXX"
 
-    explorerLimit = 2 # number of available explorers
+    explorerLimit = 10 # number of available explorers
     explorerDuration = 120
 
     actions = 0 # action points, tick up at the end of week
