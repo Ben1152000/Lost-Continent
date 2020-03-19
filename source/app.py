@@ -31,7 +31,7 @@ def showMapScene():
     for province in mainmap.provinces:
         province.backend = gameState.provinces[province.pid]
 
-    provenceMenu = mapping.menu.Menu(mainmap)
+    provenceMenu = mapping.menu.Menu(mainmap, gameState)
 
     menuHeight = 150
     mainmapRect = mapping.rectangle.Rectangle(0, DISPLAYSCREEN.get_width(), 0, DISPLAYSCREEN.get_height() - menuHeight)
@@ -54,28 +54,46 @@ def showMapScene():
         if timeSinceLastTick > TICKTIME:
             timeSinceLastTick = 0
             gameState.tick()
+            provenceMenu.update(DISPLAYSCREEN, menuRect, font)
 
         for event in pygame.event.get():
+
             if event.type == pygame.QUIT:
                 done = True
+
             if event.type == pygame.KEYDOWN:
+
                 if event.key == pygame.K_ESCAPE:
                     done = True
+
                 if event.key == pygame.K_RETURN:
                     gameState.execute("explore FRA " + str(mainmap.selected))
+
             if event.type == pygame.MOUSEBUTTONDOWN:
+
                 if event.button == 1:
                     clickPos = mapping.vertex.Vertex(event.pos[0], event.pos[1])
                     if clickPos in mainmapRect:
                         mainmap.click(DISPLAYSCREEN, mainmapRect, event.pos, viewport)
                     elif clickPos in menuRect:
                         provenceMenu.click(DISPLAYSCREEN, menuRect, event.pos)
+                    provenceMenu.update(DISPLAYSCREEN, menuRect, font)
+
                 if event.button == 4:
                     if viewport.getWidth() > MINZOOM:
                         viewport.scale(-ZOOMSPEED * dt, -ZOOMSPEED * dt)
+
                 if event.button == 5:
                     if viewport.getWidth() < MAXZOOM:
                         viewport.scale(ZOOMSPEED * dt, ZOOMSPEED * dt)
+
+            if event.type == pygame.MOUSEBUTTONUP:
+
+                if event.button == 1:
+                    clickPos = mapping.vertex.Vertex(event.pos[0], event.pos[1])
+                    if clickPos in menuRect:
+                        provenceMenu.release(DISPLAYSCREEN, menuRect, event.pos)
+                    provenceMenu.update(DISPLAYSCREEN, menuRect, font)
         
         pressed = pygame.key.get_pressed()
         

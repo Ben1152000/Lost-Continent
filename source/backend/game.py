@@ -61,6 +61,10 @@ class Province():
     neighbors = []
     biome = ""
 
+    civilianInf = 0
+    extractionInf = 0
+    transportInf = 0
+
     def __init__(self, game, provinceId):
         self.game = game
         self.provinceId = provinceId

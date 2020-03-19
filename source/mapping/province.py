@@ -60,12 +60,14 @@ class Province():
             hue, sat, val = (0, 50, 50)
             if self.backend.biome in self.biomeColors:
                 hue, sat, val = self.biomeColors[self.backend.biome]
-            """
-            sat = sat * (self.pid in player.explored and player.explored[self.pid]) # if unexplored, set sat to 0
+            
+            if self.pid not in player.explored: # if unexplored, set sat to 0
+                sat, val = 0, 50
             for explorer in player.explorers:
                 if explorer["provinceId"] == self.pid:
                     sat = 40 * math.e ** (-explorer["remainingTime"] / 20) + 10
-            """
+                    val = (val - 50) * math.e ** (-explorer["remainingTime"] / 20) + 50
+            
             if self.selected:
                 val = min(val + 0.6 * (100.0 - val) * (math.sin(time / 200.0) / 2.0 + 0.5), 100)
             color.hsva = (hue, sat, val)
